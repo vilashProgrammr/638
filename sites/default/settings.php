@@ -1,6 +1,6 @@
 <?php
-ini_set('mbstring.http_input', 'pass');
-ini_set('mbstring.http_output', 'pass');
+//ini_set('mbstring.http_input', 'pass');
+//ini_set('mbstring.http_output', 'pass');
 /**
  * @file
  * Drupal site-specific configuration file.
@@ -185,7 +185,7 @@ $databases = array (
     array (
       'database' => 'drupal',
       'username' => 'root',
-      'password' => 'password',
+      'password' => '',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',
@@ -246,7 +246,7 @@ $drupal_hash_salt = 'Bg0CwBYxQ7frsBzObXl1NV59ZUzvlCnXjzFyguJrQ5o';
  * It is not allowed to have a trailing slash; Drupal will add it
  * for you.
  */
-# $base_url = 'http://www.example.com';  // NO trailing slash!
+ //$base_url = 'http://ec2-54-87-13-73.compute-1.amazonaws.com:4200';  // NO trailing slash!
 
 /**
  * PHP settings:
@@ -267,6 +267,13 @@ $drupal_hash_salt = 'Bg0CwBYxQ7frsBzObXl1NV59ZUzvlCnXjzFyguJrQ5o';
  */
 ini_set('session.gc_probability', 1);
 ini_set('session.gc_divisor', 100);
+
+
+//ini_set('session.cookie_domain','www.example.org');
+//ini_set('session.auto_start', 0);
+//$cookie_domain = 'ec2-54-87-13-73.compute-1.amazonaws.com';
+//dj:patch
+  $cookie_domain = preg_replace('/(.*)?\:.*$/', '$1', $_SERVER['HTTP_HOST']);
 
 /**
  * Set session lifetime (in seconds), i.e. the time from the user's last visit
@@ -303,7 +310,7 @@ ini_set('session.cookie_lifetime', 2000000);
  * between your various domains. Make sure to always start the $cookie_domain
  * with a leading dot, as per RFC 2109.
  */
-# $cookie_domain = '.example.com';
+ //$cookie_domain = 'ec2-54-87-13-73.compute-1.amazonaws.com';
 
 /**
  * Variable overrides:
